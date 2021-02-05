@@ -15,7 +15,10 @@ abstract class ValueObject<T> {
   /// and the method throws [UnexpectedValueError] containing the [ValueFailure].
   T getOrCrash() {
     // id = identity = same is (r) => r
-    return value.fold((l) => throw UnexpectedValueError(), id);
+    return value.fold(
+      (l) => throw UnexpectedValueError(l),
+      id,
+    );
   }
 
   /// Genericizes the value type if there is a ValueFailure or unit
