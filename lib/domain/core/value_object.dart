@@ -11,6 +11,7 @@ abstract class ValueObject<T> {
   Either<ValueFailure<T>, T> get value;
 
   /// Gets the actual value of this ValueObject if valid, otherwise crashes.
+  ///
   /// This method folds the value. If a left value exists, there is an error
   /// and the method throws [UnexpectedValueError] containing the [ValueFailure].
   T getOrCrash() {
