@@ -4,9 +4,12 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
+import 'infrastructure/auth/firebase_auth_facade.dart';
 import 'domain/auth/i_auth_facade.dart';
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart';
 
@@ -19,6 +22,8 @@ GetIt $initGetIt(
   EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
+  gh.lazySingleton<IAuthFacade>(
+      () => FirebaseAuthFacade(get<FirebaseAuth>(), get<GoogleSignIn>()));
   gh.factory<SignInFormBloc>(() => SignInFormBloc(get<IAuthFacade>()));
   return get;
 }
