@@ -1,11 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 import 'package:uniplan/domain/auth/auth_failure.dart';
 import 'package:uniplan/domain/auth/i_auth_facade.dart';
 import 'package:uniplan/domain/auth/value_objects.dart';
-import 'package:uniplan/domain/core/errors.dart';
 
+/// Concrete Firebase implementation of [IAuthFacade].
+///
+/// Needs to be a [LazySingleton] for dependency injection registration since
+/// [IAuthFacade] is just abstract.
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
