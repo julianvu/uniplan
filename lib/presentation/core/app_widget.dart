@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:uniplan/presentation/sign_in/sign_in_page.dart';
 
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'UniPlan',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(),
+      home: SignInPage(),
     );
   }
 }
